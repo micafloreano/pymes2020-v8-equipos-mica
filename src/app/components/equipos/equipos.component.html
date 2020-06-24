@@ -1,65 +1,71 @@
 <div class="container">
-<h3>{{Titulo}}</h3>
-<div *ngIf="EstadoForm == 'L'">
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-            <th class="text-center">EquipoNombre</th>
-            <th class="text-center">EquipoRanking</th>
-            <th class="text-center">IdEquipo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of Items">
-            <td>{{item.EquipoNombre}}</td>
-            <td>{{item.EquipoRanking}}</td>
-            <td>{{item.IdEquipo}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <input name="" id=""  class="btn btn-success" type = "button"  value= "Alta"(click) = 'Alta()'>
-</div>
-<div *ngIf="EstadoForm == 'A'">
-  <h1>Modificar Empresa</h1>
-  <form name="FormReg" [formGroup]='FormReg'>
-		<!--campo EquipoNombre-->
-		<div class="form-group row">
-			<label class="col-form-label col-sm-2 col-sm-offset-2" for="Nombre">EquipoNombre <span
+	<h3>{{Titulo}}</h3>
+	<div *ngIf="EstadoForm == 'L'">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th class="text-center">EquipoNombre</th>
+					<th class="text-center">EquipoRanking</th>
+					<th class="text-center">IdEquipo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of Items">
+					<td>{{item.EquipoNombre}}</td>
+					<td>{{item.EquipoRanking}}</td>
+					<td>{{item.IdEquipo}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<input name="" id=""  class="btn btn-success" type = "button"  value= "Alta"(click) = 'Alta()'>
+  </div>
+		<div *ngIf="EstadoForm == 'A'">
+			<form name="FormReg" [formGroup]='FormReg'>
+				<!--campo EquipoNombre-->
+				<div class="form-group row">
+					<label class="col-form-label col-sm-2 col-sm-offset-2" for="Nombre">EquipoNombre <span
                     class="text-danger">*</span></label>
-			<div class="col-sm-6">
-				<input type="text" class="form-control" formControlName="EquipoNombre" 
+					<div class="col-sm-6">
+						<input type="text" class="form-control" formControlName="EquipoNombre"
          [ngClass]="{'is-invalid': (FormReg.controls.EquipoNombre.touched || submitted)  
             && FormReg.controls.EquipoNombre.errors}" />
 
-				<span class="text-danger" *ngIf="(FormReg.controls.EquipoNombre.touched || submitted) 
+						<span class="text-danger" *ngIf="(FormReg.controls.EquipoNombre.touched || submitted) 
                         && FormReg.controls.EquipoNombre.errors?.required">
                     Dato requerido.
                 </span>
-                <span class="text-danger" *ngIf="(FormReg.controls.EquipoNombre.touched || submitted) 
+						<span class="text-danger" *ngIf="(FormReg.controls.EquipoNombre.touched || submitted) 
                        && (FormReg.controls.EquipoNombre.errors?.minlength || FormReg.controls.EquipoNombre.errors?.maxlength) ">
                     Dato texto, 4 a 55 caracteres.
                 </span>
-                
-	</div>
 
-		<!--campo EquipoRanking-->
-		<div class="row form-group">
-			<label class="col-form-label col-sm-2 col-sm-offset-2" for="EquipoRanking">EquipoRanking <span
+					</div>
+
+					<!--campo EquipoRanking-->
+					<div class="row form-group">
+						<label class="col-form-label col-sm-2 col-sm-offset-2" for="EquipoRanking">EquipoRanking <span
                     class="text-danger">*</span></label>
-			<div class="col-sm-6">
-				<input type="text" name="Precio" class="form-control" formControlName="EquipoRanking"
+						<div class="col-sm-6">
+							<input type="text" name="EquipoRanking" class="form-control" formControlName="EquipoRanking"
             [ngClass]="{'is-invalid': (FormReg.controls.EquipoRanking.touched || submitted)  
             && FormReg.controls.EquipoRanking.errors}" />
-				<span class="text-danger" *ngIf="(FormReg.controls.EquipoRanking.touched || submitted) 
+							<span class="text-danger" *ngIf="(FormReg.controls.EquipoRanking.touched || submitted) 
                        && FormReg.controls.EquipoRanking.errors?.required">
                     Dato requerido.
                 </span>
-				<span class="text-danger" *ngIf="(FormReg.controls.EquipoRanking.touched || submitted) 
+							<span class="text-danger" *ngIf="(FormReg.controls.EquipoRanking.touched || submitted) 
                && FormReg.controls.Precio.errors?.pattern">
                     Dato numérico, 1 a 7 dígitos.
                 </span>
-			</div>
-		</div>
-	
-		</div>
-</div>
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<button type="button" *ngIf="AccionABMC!=='C'" class="btn btn-primary" (click)="Grabar()">
+            <span class="fas fa-check"></span> Grabar
+        </button>
+						&nbsp;
+						<button type="button" class="btn btn-warning" (click)="Volver()">
+            <span class="fas fa-undo"></span> {{AccionABMC=='C' ? 'Volver' : 'Cancelar'}}
+        </button>
+					</div>
+				</div>
