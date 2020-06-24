@@ -14,12 +14,12 @@ import { Equipo } from "../models/equipo";
 export class EquiposService {
   resourceUrl: string;
 
-  constructor(private hhtpCliente: HttpClient) {
+  constructor(private httpCliente: HttpClient) {
     this.resourceUrl = "https://pavii.ddns.net/api/equipos"
    }
 
    get(){
-     return this.hhtpCliente.get(this.resourceUrl)
+     return this.httpCliente.get(this.resourceUrl)
    }
 
 }
